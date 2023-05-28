@@ -1,5 +1,5 @@
 #Tektronix 2430 Star Wars opening crawl
-#you need a National Instrumente GPIB adapter and cable
+#you need a National Instruments GPIB adapter and cable
 #ni-488, ni-visa installed
 
 import pyvisa
