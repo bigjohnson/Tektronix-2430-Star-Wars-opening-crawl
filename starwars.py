@@ -1,9 +1,11 @@
 #Tektronix 2430 Star Wars opening crawl
-#you need a National Instruments GPIB adapter and cable
+#you need a National Instrumente GPIB adapter and cable
 #ni-488, ni-visa installed
 
 import pyvisa
 import time
+#ritardo = .08
+ritardo = .01
 rm = pyvisa.ResourceManager()
 #print(rm.list_resources())
 #Check instrument adress
@@ -48,15 +50,31 @@ lines = [" "] * 16
 
 line = 15
 for y in range (0, punto):
-    finale = ' ' * (len(space) - (len(sentences[y])))
-    lines[line] = sentences[y] + finale
+    lunghezza = len(space) - (len(sentences[y]))
+    #finale = ' ' * lunghezza
+    print(sentences[y])
+    print(lunghezza)
+    start = lunghezza // 2
+    print(start)
+    end = lunghezza - start
+    print(end)
+    #lines[line] = sentences[y] + finale
+    
+    inizio = ' ' * start
+    fine = ' ' * end
+    lines[line] = inizio + sentences[y] + fine
+    print(inizio + sentences[y] + fine)
     for x in range (0, len(sentences[y])+1):
-        command = 'message ' + str(line+1) +':"' + sentences[y][0:x] + finale + '"'
+        #command = 'message ' + str(line+1) +':"' + sentences[y][0:x] + finale + '"'
+        command = 'message ' + str(line+1) +':"' + inizio + sentences[y][0:x] + fine + '"'
         my_instrument.write(command)
-        time.sleep(.08)
+        time.sleep(ritardo)
     line-=1
 #                    "                                        "
 #                      
+
+#while True:
+#  pass
 
 while punto < len(sentences):
 
@@ -69,12 +87,19 @@ while punto < len(sentences):
     command = 'message 1:"                                        "'
     my_instrument.write(command)
     #punto+=1
-    finale = ' ' * (len(space) - (len(sentences[punto])))
-    lines[0] = sentences[punto] + finale
+    #finale = ' ' * (len(space) - (len(sentences[punto])))
+    #lines[0] = sentences[punto] + finale
+    lunghezza = len(space) - len(sentences[punto])
+    start = lunghezza // 2
+    end = lunghezza - start
+    inizio = ' ' * start
+    fine = ' ' * end
+    lines[0] = inizio + sentences[punto] + fine
     for x in range (0, len(sentences[punto])):
-        command = 'message 1:"' + sentences[punto][0:x] + finale + '"'
+        #command = 'message 1:"' + sentences[punto][0:x] + finale + '"'
+        command = 'message 1:"' + inizio + sentences[punto][0:x] + fine + '"'
         my_instrument.write(command)
-        time.sleep(.08)
+        time.sleep(ritardo)
     punto+=1
 
 
