@@ -11,6 +11,6 @@ You need a GPIB interface and cable to connect the pc to the scope.
 
 
 
-[![Video2](http://i3.ytimg.com/vi/BcBWxoD4IjY/hqdefault.jpg])](https://youtu.be/BcBWxoD4IjY)
+[![Video2](http://i3.ytimg.com/vi/BcBWxoD4IjY/hqdefault.jpg)](https://youtu.be/BcBWxoD4IjY)
 
 
